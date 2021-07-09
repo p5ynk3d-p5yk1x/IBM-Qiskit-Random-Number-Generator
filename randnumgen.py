@@ -20,8 +20,10 @@ def randnum(n):
         rand = (pow(2,i)*qcm)
         temp = sum + rand
         if pow(10,(n-1)) < temp < pow(10,n):
-            sum = temp
-            break
+            flag = randbool()
+            if flag :
+                sum = temp
+                break
         elif sum < pow(10,(n-1)) and temp > pow(10,n):
             i = 1
             rand = (pow(2,i))*qcm
@@ -39,8 +41,10 @@ def randrange(ll,ul):
         rand = (pow(2,i)*qcm)
         temp = sum + rand
         if ll < temp < ul:
-            sum = temp
-            break
+            flag = randbool()
+            if flag :
+                sum = temp
+                break
         elif sum < ll and temp > ul:
             i = 1
             rand = (pow(2,i))*qcm
