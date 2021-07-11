@@ -11,47 +11,44 @@ def randbool():
     results = jobs.result()
     qcm = results.get_statevector()
     return(qcm[0].real)
- 
-def randnum(n):
-    sum = 0 
-    i = 0 
-    while sum < pow(10,n):
-        qcm = randbool()
-        rand = (pow(2,i)*qcm)
-        temp = sum + rand
-        if pow(10,(n-1)) < temp < pow(10,n):
-            flag = randbool()
-            if flag :
-                sum = temp
-                break
-        elif sum < pow(10,(n-1)) and temp > pow(10,n):
-            i = 1
-            rand = (pow(2,i))*qcm
-            sum = sum + rand
-            i = i + 1
-        else:
-            sum = sum + rand
-            i = i + 1
-    return(sum) 
+def inttobin(n):
+    binary = []
+    temp = n
+    while int(temp) != 0 :
+        binary.append(int(temp%2))
+        temp = temp/2
+    return(binary)
+
+def bintoint(x):
+    sum = 0
+    for i in range(len(x)):
+        sum = sum + (pow(2,i)*x[i])
+    return(sum)
+    
+def randbingen(n):
+    bruh = []
+    for i in range(n):
+        bruh.append(randbool())
+    return(bruh)
+    
 def randrange(ll,ul):
-    sum = 0 
-    i = 0 
-    while sum < ul:
-        qcm = randbool()
-        rand = (pow(2,i)*qcm)
-        temp = sum + rand
-        if ll < temp < ul:
-            flag = randbool()
-            if flag :
-                sum = temp
-                break
-        elif sum < ll and temp > ul:
-            i = 1
-            rand = (pow(2,i))*qcm
-            sum = sum + rand
-            i = i + 1
-        else:
-            sum = sum + rand
-            i = i + 1
-    return(sum) 
-  
+    l=inttobin(ll)
+    u=inttobin(ul)
+    if len(l)==len(u):
+        n = randbingen(len(l))
+        num = bintoint(n)
+        if num > ul or num < ll:
+            return(randrange(ll,ul))
+        elif ll<num<ul:
+            return(num)
+    else :
+        ex = 0
+        for i in range(len(u)-len(l)):
+            ex = ex + randbool()
+        n = randbingen(len(l)+int(ex))
+        num = bintoint(n)
+        print(n,num)
+        if num > ul or num < ll:
+            return(randrange(ll,ul))
+        elif ll<num<ul:
+            return(num)
